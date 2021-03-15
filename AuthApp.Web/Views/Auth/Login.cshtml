@@ -1,0 +1,32 @@
+﻿@model AuthApp.Web.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@using (Html.BeginForm("Login", "Auth", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class="form-validate", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <div class="row">
+            @if(ViewBag.ErrorMessage != null)
+            {
+                <div class="alert alert-danger" role="alert">@ViewBag.ErrorMessage</div>
+            }
+            <div class="form">
+                <div class="form-group">
+                    <span>Log in to your account</span>
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(e => e.Username, new { @class = "form-control", @required = true, @placeholder = "Enter username" })
+                </div>
+                <div class="form-group">
+                    @Html.PasswordFor(e => e.Password, new { @class = "form-control", @required = true, @placeholder = "Enter password" })
+                </div>
+                <button id="loginBtn" type="submit" class="btn btn-default">Login</button>
+            </div>
+        </div>
+    </div>
+}
+
